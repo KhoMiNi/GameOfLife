@@ -45,8 +45,8 @@ class MainFrame {
     }
 
     private void checkSize() {
-        fieldSizeX = fieldSizeX > 9 && fieldSizeX <1000 ? fieldSizeX : 50; // default
-        fieldSizeY = fieldSizeY > 9 && fieldSizeY <1000 ? fieldSizeY : 50; // default
+        fieldSizeX = fieldSizeX > 9 && fieldSizeX < 1000 ? fieldSizeX : 50; // default
+        fieldSizeY = fieldSizeY > 9 && fieldSizeY < 1000 ? fieldSizeY : 50; // default
     }
 
     private void changeTitle() {
@@ -104,20 +104,20 @@ class MainFrame {
         String title = "Conway's Game of Life";
         frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        int fieldWidth = 100 * pointSize;
-        int fieldHeight = 100 * pointSize;
-
-        int BTN_PANEL_HEIGHT = 58;
-        frame.setSize(fieldWidth, fieldHeight + BTN_PANEL_HEIGHT);
-        frame.setLocation(50, 50);
-        frame.setResizable(true);
-
+        int fieldWidth = 100 * pointSize;    //default size
+        int fieldHeight = 100 * pointSize;   //default size
+        int btnPanelHeight = 58;
         final JScrollPane scrollPane = new JScrollPane(gameField);
         gameField.setPreferredSize(new Dimension(fieldSizeX * pointSize, fieldSizeY * pointSize));
         gameField.setAutoscrolls(true);
         frame.getContentPane().add(BorderLayout.CENTER, scrollPane);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        if (gameField.getFieldSizeY() < 100) fieldHeight = gameField.getFieldSizeY() * pointSize;
+        if (gameField.getFieldSizeX() < 100) fieldWidth = gameField.getFieldSizeX() * pointSize;
+        frame.setSize(fieldWidth + 35, fieldHeight + btnPanelHeight + 35);
+        frame.setLocation(50, 50);
+        frame.setResizable(true);
 
         frame.getContentPane().add(BorderLayout.SOUTH, buttonPanel);
         frame.setVisible(true);

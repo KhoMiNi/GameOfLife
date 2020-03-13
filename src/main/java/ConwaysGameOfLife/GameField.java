@@ -7,6 +7,19 @@ import java.util.Random;
 
 public class GameField extends JPanel {
     private int fieldSizeY, fieldSizeX, pointSize;
+
+    int getFieldSizeY() {
+        return fieldSizeY;
+    }
+
+    int getFieldSizeX() {
+        return fieldSizeX;
+    }
+
+    int getPointSize() {
+        return pointSize;
+    }
+
     private long turn;
     private boolean[][] lifeGeneration, nextGeneration, previousGeneration;
     private Random random = new Random();
